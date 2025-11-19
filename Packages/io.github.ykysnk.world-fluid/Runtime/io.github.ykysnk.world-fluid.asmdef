@@ -1,0 +1,21 @@
+{
+  "name": "io.github.ykysnk.world-fluid",
+  "rootNamespace": "io.github.ykysnk.WorldFluid",
+  "references": [
+    "VRC.SDK3",
+    "VRC.SDKBase",
+    "UdonSharp.Runtime",
+    "io.github.ykysnk.utils",
+    "io.github.ykysnk.world-basic.udon",
+    "io.github.ykysnk.cheat-client-protector"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

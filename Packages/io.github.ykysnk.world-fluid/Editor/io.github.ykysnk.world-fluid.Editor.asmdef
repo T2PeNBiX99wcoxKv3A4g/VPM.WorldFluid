@@ -1,0 +1,27 @@
+{
+    "name": "io.github.ykysnk.world-fluid.Editor",
+    "rootNamespace": "io.github.ykysnk.WorldFluid",
+    "references": [
+        "VRC.SDK3",
+        "VRC.SDK3.Editor",
+        "VRC.SDKBase",
+        "VRC.SDKBase.Editor",
+        "UdonSharp.Runtime",
+        "io.github.ykysnk.utils",
+        "io.github.ykysnk.utils.Editor",
+        "io.github.ykysnk.cheat-client-protector",
+        "io.github.ykysnk.world-basic.udon",
+        "io.github.ykysnk.world-fluid"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
