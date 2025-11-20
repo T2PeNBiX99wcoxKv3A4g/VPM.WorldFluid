@@ -20,7 +20,7 @@ public class ComplexFluidInteractorEditor : BasicEditor
         complexFluidInteractor.coll = complexFluidInteractor.GetComponent<Collider>();
 
         var corners = complexFluidInteractor.DefineCorners();
-        
+
         foreach (var transform in complexFluidInteractor.floaters)
             DestroyImmediate(transform.gameObject);
 

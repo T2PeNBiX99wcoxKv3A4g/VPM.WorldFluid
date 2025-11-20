@@ -1,5 +1,4 @@
-﻿using System;
-using io.github.ykysnk.utils.Extensions;
+﻿using io.github.ykysnk.utils.Extensions;
 using io.github.ykysnk.WorldBasic.Udon;
 using JetBrains.Annotations;
 using UdonSharp;
@@ -16,12 +15,12 @@ namespace io.github.ykysnk.WorldFluid
         public float drag = 1;
         public float angularDrag = 1f;
 
+        private bool _oldIsPlayerHeadUnderWater;
+
         protected bool IsPlayerEntered { get; private set; }
         protected bool IsPlayerHeadUnderWater { get; private set; }
 
         public Collider Coll { get; private set; }
-
-        private bool _oldIsPlayerHeadUnderWater;
 
         protected virtual void Start()
         {
