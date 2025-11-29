@@ -1,7 +1,7 @@
 {
   "name": "io.github.ykysnk.world-fluid",
   "displayName": "World Fluid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "World fluid for worlds.",
   "gitDependencies": {},
   "vpmDependencies": {
