@@ -25,19 +25,7 @@ namespace io.github.ykysnk.WorldFluid
         protected virtual void Start()
         {
             Coll = GetComponent<Collider>();
-        }
-
-        protected virtual void Update()
-        {
-            var player = Networking.LocalPlayer;
-            _oldIsPlayerHeadUnderWater = IsPlayerHeadUnderWater;
-            IsPlayerHeadUnderWater = IsPointUnderWater(player.GetBonePosition(HumanBodyBones.Head));
-
-            if (IsPlayerHeadUnderWater == _oldIsPlayerHeadUnderWater) return;
-            if (IsPlayerHeadUnderWater)
-                OnPlayerHeadEnterFluid(player);
-            else
-                OnPlayerHeadExitFluid(player);
+            StartFreamRateLoop();
         }
 
         protected virtual void OnTriggerEnter(Collider other)
@@ -69,6 +57,19 @@ namespace io.github.ykysnk.WorldFluid
             if (Utilities.IsValid(fluidInteractor))
                 fluidInteractor.StayFluid(this, fluidInteractor.RandomKey);
             OnObjectStayFluid(other);
+        }
+
+        protected override void FreamRateLoop()
+        {
+            var player = Networking.LocalPlayer;
+            _oldIsPlayerHeadUnderWater = IsPlayerHeadUnderWater;
+            IsPlayerHeadUnderWater = IsPointUnderWater(player.GetBonePosition(HumanBodyBones.Head));
+
+            if (IsPlayerHeadUnderWater == _oldIsPlayerHeadUnderWater) return;
+            if (IsPlayerHeadUnderWater)
+                OnPlayerHeadEnterFluid(player);
+            else
+                OnPlayerHeadExitFluid(player);
         }
 
         public override void OnPlayerTriggerEnter(VRCPlayerApi player)

@@ -22,6 +22,7 @@ namespace io.github.ykysnk.WorldFluid
             rb = GetComponent<Rigidbody>();
 
             volume = customVolume != 0 ? customVolume : CalculateVolume();
+            StartFreamRateLoop();
         }
 
 #if !COMPILER_UDONSHARP && UNITY_EDITOR

@@ -59,12 +59,7 @@ namespace io.github.ykysnk.WorldFluid
             _airDrag = rb.drag;
             _airAngularDrag = rb.angularDrag;
             volume = customVolume != 0 ? customVolume : CalculateVolume();
-        }
-
-        private void Update()
-        {
-            if (customVolume != 0)
-                volume = customVolume;
+            StartFreamRateLoop();
         }
 
         public void Awake()
@@ -79,8 +74,11 @@ namespace io.github.ykysnk.WorldFluid
 
         #region Functions for FluidUpdate
 
-        private void FixedUpdate()
+        protected override void FreamRateLoop()
         {
+            if (customVolume != 0)
+                volume = customVolume;
+
             _time += Time.fixedDeltaTime / 4;
 
             if (inFluidCount > 0)
