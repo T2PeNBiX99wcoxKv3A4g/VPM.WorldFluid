@@ -15,18 +15,14 @@ namespace io.github.ykysnk.WorldFluid
         public float drag = 1;
         public float angularDrag = 1f;
 
+        [HideInInspector] public Collider coll;
+
         private bool _oldIsPlayerHeadUnderWater;
 
         protected bool IsPlayerEntered { get; private set; }
         protected bool IsPlayerHeadUnderWater { get; private set; }
 
-        public Collider Coll { get; private set; }
-
-        protected virtual void Start()
-        {
-            Coll = GetComponent<Collider>();
-            StartFreamRateLoop();
-        }
+        protected virtual void Start() => StartFreamRateLoop();
 
         protected virtual void OnTriggerEnter(Collider other)
         {
@@ -57,6 +53,11 @@ namespace io.github.ykysnk.WorldFluid
             if (Utilities.IsValid(fluidInteractor))
                 fluidInteractor.StayFluid(this, fluidInteractor.RandomKey);
             OnObjectStayFluid(other);
+        }
+
+        protected override void OnChange()
+        {
+            coll = GetComponent<Collider>();
         }
 
         protected override void FreamRateLoop()
@@ -126,6 +127,6 @@ namespace io.github.ykysnk.WorldFluid
         {
         }
 
-        public bool IsPointUnderWater(Vector3 point) => Coll.bounds.Contains(point);
+        public bool IsPointUnderWater(Vector3 point) => coll.bounds.Contains(point);
     }
 }

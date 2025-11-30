@@ -9,7 +9,7 @@ namespace io.github.ykysnk.WorldFluid
         protected override void FluidUpdate()
         {
             if (!Utilities.IsValid(fluid)) return;
-            var fluidSurface = fluid.Coll ? fluid.Coll.bounds.max.y : fluid.transform.position.y;
+            var fluidSurface = fluid.coll ? fluid.coll.bounds.max.y : fluid.transform.position.y;
             var difference = transform.position.y - fluidSurface;
 
             if (!(difference < 0)) return;
