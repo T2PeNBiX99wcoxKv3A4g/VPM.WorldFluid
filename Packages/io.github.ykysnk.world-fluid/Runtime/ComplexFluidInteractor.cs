@@ -6,31 +6,18 @@ namespace io.github.ykysnk.WorldFluid
     [AddComponentMenu("yky/World Fluid/Complex Fluid Interactor")]
     public class ComplexFluidInteractor : BaseFluidInteractor
     {
-        private const string Name = "CornerFloater";
-
         [SerializeField] [Min(0.001f)] private float drawRadius = .1f;
 
         public Transform[] floaters =
         {
         };
 
-        private int _cornerFloatersId;
-
-        public override void Start()
-        {
-            coll = GetComponent<Collider>();
-            rb = GetComponent<Rigidbody>();
-
-            volume = customVolume != 0 ? customVolume : CalculateVolume();
-            StartFreamRateLoop();
-        }
-
 #if !COMPILER_UDONSHARP && UNITY_EDITOR
         private void OnDrawGizmos()
         {
             foreach (var floater in floaters)
             {
-                if (!Utilities.IsValid(floater) || !floater.name.Contains(Name)) continue;
+                if (!Utilities.IsValid(floater)) continue;
                 float difference = 0;
 
                 if (inFluidCount > 0 && Utilities.IsValid(fluid))
@@ -46,7 +33,7 @@ namespace io.github.ykysnk.WorldFluid
         {
             foreach (var floater in floaters)
             {
-                if (!Utilities.IsValid(floater) || !Utilities.IsValid(fluid) || !floater.name.Contains(Name)) continue;
+                if (!Utilities.IsValid(floater) || !Utilities.IsValid(fluid)) continue;
                 var difference = floater.position.y - fluid.transform.position.y;
 
                 if (!(difference < 0)) continue;

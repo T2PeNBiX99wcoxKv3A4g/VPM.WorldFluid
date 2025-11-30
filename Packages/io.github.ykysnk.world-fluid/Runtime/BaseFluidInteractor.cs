@@ -28,13 +28,12 @@ namespace io.github.ykysnk.WorldFluid
         [HideInInspector] public float[] rndTimeOffset = new float[6];
 
         public float floatStrength = 2;
-        private float _airAngularDrag;
 
-        private float _airDrag;
+        [SerializeField] [HideInInspector] private float airDrag;
+        [SerializeField] [HideInInspector] private float airAngularDrag;
 
         private float _time;
         private float _waterAngularDrag = 1f;
-
         private float _waterDrag = 3f;
 
         protected abstract void FluidUpdate();
@@ -53,13 +52,16 @@ namespace io.github.ykysnk.WorldFluid
 
         public virtual void Start()
         {
-            coll = GetComponent<Collider>();
-            rb = GetComponent<Rigidbody>();
-
-            _airDrag = rb.drag;
-            _airAngularDrag = rb.angularDrag;
             volume = customVolume != 0 ? customVolume : CalculateVolume();
             StartFreamRateLoop();
+        }
+
+        protected override void OnChange()
+        {
+            coll = GetComponent<Collider>();
+            rb = GetComponent<Rigidbody>();
+            airDrag = rb.drag;
+            airAngularDrag = rb.angularDrag;
         }
 
         public void Awake()
@@ -128,8 +130,8 @@ namespace io.github.ykysnk.WorldFluid
 
             if (inFluidCount != 0) return;
 
-            rb.drag = _airDrag;
-            rb.angularDrag = _airAngularDrag;
+            rb.drag = airDrag;
+            rb.angularDrag = airAngularDrag;
         }
 
         #endregion
